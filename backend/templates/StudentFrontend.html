@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management</title>
+    <!-- تم تعديل مسار الـ CSS هنا -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- تم تعديل مسار الـ JavaScript هنا -->
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+    <main class="container">
+
+        <header class="page-header">
+            <div>
+                <h1>Student Management</h1>
+                <p>View and manage student information</p>
+            </div>
+
+            <div class="header-actions">
+                <button id="newStudentBtn" class="btn btn-primary" type="button">
+                    + New Student
+                </button>
+
+                <button id="refreshBtn" class="btn btn-secondary" type="button">
+                    Update Data
+                </button>
+            </div>
+        </header>
+
+        <section class="stats">
+            <div class="stat-card">
+                <span>Total number of students</span>
+                <strong id="studentCount">0</strong>
+            </div>
+        </section>
+
+        <section class="students-section">
+            <div class="table-header">
+                <h2>Student List</h2>
+                <input type="search" id="searchInput"
+                       placeholder="Search" aria-label="Search for a student">
+            </div>
+
+            <p id="statusMessage" role="status">Loading data...</p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Student Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Gender</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentsTable"></tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="studentModal" class="modal" hidden>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="formTitle">New Student</h2>
+                <button type="button" id="closeModalBtn" class="close-btn"
+                        aria-label="Close">&times;</button>
+            </div>
+
+            <form id="studentForm">
+                <input type="hidden" id="studentId">
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="studentName">Student Name</label>
+                        <input type="text" id="studentName"
+                               placeholder="Enter student name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="studentEmail">Email</label>
+                        <input type="email" id="studentEmail"
+                               placeholder="Enter email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="studentPhone">Phone</label>
+                        <input type="tel" id="studentPhone"
+                               placeholder="Enter phone number" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="studentGender">Gender</label>
+                        <select id="studentGender" required>
+                            <option value="">Select gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" id="saveStudentBtn"
+                            class="btn btn-primary">Add Student</button>
+                    <button type="button" id="clearFormBtn"
+                            class="btn btn-secondary">Clear Fields</button>
+                </div>
+
+                <p id="formMessage" role="status"></p>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
